@@ -142,7 +142,7 @@ function manageAD
                 Write-Host "`n Le niveau fonctionnel de la foret est : " (Get-ADForest).ForestMode  
           }
 
-        10 { exit(0) }
+        10 { main }
     }
 }
 
@@ -155,13 +155,15 @@ function configuration_server
 
    switch ( $user_choice )
    {
-     1 {  ipconfig }
-     2 {  Get-DhcpServerv4Scope }
-     3 {  Get-DnsServerResourceRecord -ZoneName "abstergo.local" }
+     1 {  ipconfig;configuration_server }
+     2 {  Get-DhcpServerv4Scope;configuration_server }
+     3 {  Get-DnsServerResourceRecord -ZoneName "abstergo.local";configuration_server }
      4 {
           Write-Host "`n Le niveau fonctionnel du domain est : " (Get-ADDomain).DomainMode  
-          Write-Host "`n Le niveau fonctionnel de la foret est : " (Get-ADForest).ForestMode 
+          Write-Host "`n Le niveau fonctionnel de la foret est : " (Get-ADForest).ForestMode
+          configuration_server
        }
+     5 { main }
    }
 }
 
