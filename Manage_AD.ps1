@@ -4,7 +4,7 @@
     Import-Module ActiveDirectory
     Import-Module 'Microsoft.Powershell.Security'
 
- Assurez-vous que votre serveur est un controleur de domaine. 
+ Assurez-vous que votre serveur est un contrôleur de domaine. 
 
  Domain : abstergo.local => DC=abstergo,DC=local
 
@@ -15,7 +15,7 @@
 
 function Menu_Object_AD
 {
-    Write-Host "`n             Gérer l'Active Directory            `n"  -BackgroundColor "black"                                                      # Saut de ligne
+    Write-Host "`n             Gérer l'Active Directory            `n"  -BackgroundColor "black"                                                      
     Write-Host "1- Ajouter un objet AD                             "    -BackgroundColor "black"
     Write-Host "2- Afficher un objet AD                            "    -BackgroundColor "black"
     Write-Host "3- Supprimer un objet AD                           "    -BackgroundColor "black"
@@ -25,13 +25,13 @@ function Menu_Object_AD
 }
 
 
-# Menu ajouter un Objet Active Directory
+# Menu Ajouter un Objet Active Directory
 
 function Menu_Add_Object
 {
-    Write-Host "`n              Ajouter un Objet Active Directory            " -BackgroundColor "black"                                                       # Saut de ligne
+    Write-Host "`n              Ajouter un Objet Active Directory            " -BackgroundColor "black"           
     Write-Host "1- Ajouter un nouvel utilisateur                             " -BackgroundColor "black" 
-    Write-Host "2- Ajouter une nouvelle Unitée Organisationnel               " -BackgroundColor "black" 
+    Write-Host "2- Ajouter une nouvelle Unité Organisationnelle              " -BackgroundColor "black" 
     Write-Host "3- Ajouter un groupe                                         " -BackgroundColor "black" 
     Write-Host "4- Ajouter une stratégie de groupe GPO                       " -BackgroundColor "black" 
     Write-Host "5- Définir la politique de mot de passe                      " -BackgroundColor "black"  
@@ -40,13 +40,13 @@ function Menu_Add_Object
 }
 
 
-# Menu supprimer un Objet Active Directory
+# Menu Supprimer un Objet Active Directory
 
 function Menu_Delete_Object
 {
     Write-Host "`n"                                                       
     Write-Host "1- Supprimer un utilisateur"
-    Write-Host "2- Supprimer une Unitée Organisationnel OU"
+    Write-Host "2- Supprimer une Unité Organisationnelle UO"
     Write-Host "3- Supprimer un groupe"
     Write-Host "4- Supprimer une stratégie de groupe GPO"
     Write-Host "5- Retour"
@@ -60,11 +60,11 @@ function Menu_Show_Object
 {
     Write-Host "`n"                                                       
     Write-Host "1- Afficher un utilisateur"
-    Write-Host "2- Afficher une Unité Organisationnelle OU"
+    Write-Host "2- Afficher une Unité Organisationnelle UO"
     Write-Host "3- Afficher un groupe"
     Write-Host "4- Afficher une stratégie de groupe GPO"
     Write-Host "5- Afficher l'ensemble des utilisateurs"
-    Write-Host "6- Afficher toutes les Unités oragnisationnels OU"
+    Write-Host "6- Afficher toutes les Unités organisationnelles UO"
     Write-Host "7- Afficher tous des groupes"
     Write-Host "8- Afficher toutes les stratégies de groupe GPO"
     Write-Host "9- Afficher les ordinateurs du LAN"
@@ -81,7 +81,7 @@ function Menu_Export_Object
 {
     Write-Host "`n"                                                       
     Write-Host "1- Exporter les utilisateurs"
-    Write-Host "2- Exporter les Unitée Organisationnel OU"
+    Write-Host "2- Exporter les Unité Organisationnelle UO"
     Write-Host "3- Exporter les groupes"
     Write-Host "4- Exporter les stratégies de groupe"
     Write-Host "5- Retour"
@@ -94,13 +94,13 @@ function Menu_Export_Object
 function Menu_Server_Configuration
 {
     Write-Host "`n"  
-    Write-Host "1- Afficher l'adresse IPv4, IPv6 et l'adresse de passerel du serveur"       
+    Write-Host "1- Afficher l'adresse IPv4, IPv6 et l'adresse de la passerelle du serveur"       
     Write-Host "2- Afficher la configuration du Proxy"                                        
-    Write-Host "3- Afficher la plage d'adresse DHCP"
+    Write-Host "3- Afficher la plage d'adresses DHCP"
     Write-Host "4- Afficher la configuration DNS"
     Write-Host "5- Afficher les informations du controleur de domaine" 
-    Write-Host "6- Afficher les cartes réseau"
-    Write-Host "7- Afficher le niveau fonctionnel du windows Server"
+    Write-Host "6- Afficher les cartes réseaux"
+    Write-Host "7- Afficher le niveau fonctionnel du Windows Server"
     Write-Host "8- Retour"
     Write-Host "`n"
 }
@@ -128,32 +128,32 @@ function manageAD
                     1 {
                 
                             Write-Host "`n"                                                       # Saut de ligne
-                            $user_firstName = Read-Host "Entrer le prénom de l'utilisateur"       # Saisie des differentes informations du user
+                            $user_firstName = Read-Host "Entrer le prénom de l'utilisateur"       # Saisie des différentes informations de l'utilisateur
                             $user_lastName = Read-Host "Entrer le nom de l'utilisateur"     
                             $user_initiale = Read-Host "Entrer les initiales de l'utilisateur"
-                            $user_email = Read-Host "Entrer l'email de l'utilisateur"  
-                            $user_connectionName = Read-Host "Entrer le d'ouverture de session" 
-                            $user_path = Read-Host "Entrer l'emplacement du user (donner le path : dans un groupe, OU..etc)"
+                            $user_email = Read-Host "Entrer l'adresse e-mail de l'utilisateur"  
+                            $user_connectionName = Read-Host "Entrer le nom lors de l'ouverture de la session" 
+                            $user_path = Read-Host "Entrer l'emplacement de l'utilisateur (donner le path : dans un groupe, OU, etc.)"
 
                             New-ADUser -Name $user_lastName -GivenName $user_firstName -Surname $user_lastName -Initials $user_initiale  -SamAccountName $user_connectionName -UserPrincipalName $user_lastName -EmailAddress $user_email -Path $user_path -AccountPassword(Read-Host -AsSecureString "Entrer le mot de passe") -Enabled $true -ProtectedFromAccidentalDeletion $false  # Création de l'utilisateur
 
-                            Write-Host "`n L'utilisateur a été crée avec succès `n" -ForegroundColor "green"
+                            Write-Host "`n L'utilisateur a été créé avec succès `n" -ForegroundColor "green"
         
                             Get-ADUser -Identity $user_connectionName | Format-Table ObjectClass,Name,Surname,SamAccountName,DistinguishedName,ObjectGUID 
                             Write-Host "`n"
                       }
 
 
-                            # 2- Ajouter une nouvelle Unitée Organisationnel
+                            # 2- Ajouter une nouvelle Unité Organisationnelle UO
                     2 { 
-                            $OU_name = Read-Host "Entrer le nom de l'unitée organisationnel"   # Saisie du nom de l'OU
-                            $description = Read-Host "Entrer une description l'unitée organisationnel"
-                            $OU_DistinguishedName = Read-Host "Entrer le DistinguishedName (path) de l'unitée organisationnel"   # Saisie du nom de l'OU
+                            $OU_name = Read-Host "Entrer le nom de l'Unité Organisationnelle (UO)"   # Saisie du nom de l'UO
+                            $description = Read-Host "Entrer une description l'UO"
+                            $OU_DistinguishedName = Read-Host "Entrer le DistinguishedName (path) de l'UO"   # Saisie du nom de l'OU
 
 
                             New-ADOrganizationalUnit -Name $OU_name -Description $description -Path $OU_DistinguishedName -ProtectedFromAccidentalDeletion $false    # Création de l'OU
             
-                            Write-Host "`n L'unitée organisationnel a été crée avec succès `n" -ForegroundColor "green"
+                            Write-Host "`n L'unité organisationnelle a été créé avec succès `n" -ForegroundColor "green"
                             Get-ADOrganizationalUnit -Identity $OU_DistinguishedName | Format-Table ObjectClass,Name,DistinguishedName,ObjectGUID 
                       }
 
@@ -195,7 +195,7 @@ function manageAD
 
                             New-ADGroup -Name $group_name -GroupCategory $category -GroupScope $scope -Description $description -Path $group_DistinguishedName
 
-                            Write-Host "`n Le groupe a été crée avec succès `n" -ForegroundColor "green"
+                            Write-Host "`n Le groupe a été créé avec succès `n" -ForegroundColor "green"
 
                         }
 
@@ -207,7 +207,7 @@ function manageAD
 
                           New-GPO -Name $gpo_name -Comment $description
 
-                          Write-Host "`n La stratégie de groupe a été crée avec succès `n" -ForegroundColor "green"
+                          Write-Host "`n La stratégie de groupe a été créée avec succès `n" -ForegroundColor "green"
 
                           Get-GPO -Name $gpo_name
                       }
@@ -223,8 +223,8 @@ function manageAD
                         }
 
                         $minPwdLength = Read-Host "Spécifier le nombre minimum de caractères que contient un mot de passe (ex : 8)"
-                        $minPwdAge = Read-Host "Entrer le temps (en jours) minimum avant de changer le mot de passe (ex : 5)"
-                        $maxPwdAge = Read-Host "Entrer le temps (en jours) maximum avant de changer le mot de passe (ex : 85)"
+                        $minPwdAge = Read-Host "Entrer le durée (en jours) minimum avant de changer le mot de passe (ex : 5)"
+                        $maxPwdAge = Read-Host "Entrer le durée (en jours) maximum pour changer le mot de passe (ex : 85)"
                         $passHC = Read-Host "Spécifier le nombre de mot de passe à sauvegarder (ex : 10) - mot de passe à ne pas réutiliser"
 
                         $PolitiqueMdp = @{
@@ -239,7 +239,7 @@ function manageAD
                         Set-ADDefaultDomainPasswordPolicy @PolitiqueMdp
                         Get-ADDefaultDomainPasswordPolicy
  
-                        Write-Host "`n La politique de mot de passe a bien été modifiée. `n" -ForegroundColor "green"
+                        Write-Host "`n La politique de mot de passe a bien été modifiée `n" -ForegroundColor "green"
 
                       }
 
@@ -268,10 +268,10 @@ function manageAD
                       }
 
 
-                         # 2- Afficher une OU 
+                         # 2- Afficher une unité organisationnelle 
                     2 {
                           Write-Host "`n"
-                          $OU = Read-Host "Saisir le DistinguishedName (path) de l'unitée organisationnel OU"
+                          $OU = Read-Host "Saisir le DistinguishedName (path) de l'unité organisationnelle (OU)"
                           Get-ADOrganizationalUnit -Identity $OU | Format-Table ObjectClass,Name,DistinguishedName,ObjectGUID 
                       }
 
@@ -284,7 +284,7 @@ function manageAD
                       }
 
 
-                          # 4- Afficher une stratégie de group AD 
+                          # 4- Afficher une stratégie de groupe AD 
                     4 {
                           Write-Host "`n"
                           $gpo = Read-Host "Saisir le nom complet de la stratégie de groupe GPO"
@@ -298,7 +298,7 @@ function manageAD
                       }
                          
                          
-                          # 6- Afficher toutes des unités organisationel OUs
+                          # 6- Afficher toutes des unités organisationnelles OUs
                     6 {                
                           Get-ADOrganizationalUnit -Filter * | Format-Table ObjectClass,Name,DistinguishedName,ObjectGUID 
                       }
@@ -310,7 +310,7 @@ function manageAD
                       }
 
 
-                          # 8- Afficher l'ensemble des stratégie de groupe
+                          # 8- Afficher l'ensemble des stratégies de groupe
                     8 {                
                           Get-GPO -Filter * | Format-Table ObjectClass,Name,DistinguishedName,ObjectGUID 
                       }
@@ -353,13 +353,13 @@ function manageAD
                         # Affichage des serveurs et des roles
                         Write-Output $result | Format-Table -Wrap
  
-                        # Creation du fichier
+                        # Création du fichier
                         $date = Get-Date -Format MM.dd.yyyy
                         $result | Format-Table -Wrap |
                         Out-File "$HOME\srv_roles_$date.txt"
                         Write-Host "`nLe fichier srv_roles_$date.txt est dans $HOME `n" -ForegroundColor "green"
  
-                        # Ouverture fichier
+                        # Ouverture du fichier texte
                         Start-Process $HOME\"srv_roles_$date.txt" 
 
                       }
@@ -394,7 +394,7 @@ function manageAD
                          # 2- Supprimer une OU 
                     2 {
                           Write-Host "`n"
-                          $OU = Read-Host "Saisir le DistinguishedName (path) de l'unitée organisationnel OU"
+                          $OU = Read-Host "Saisir le DistinguishedName (path) de l'unité organisationnelle OU"
                           Remove-ADOrganizationalUnit -Identity $OU 
                           Write-Host "`n L'unité organisationnel a été supprimé avec succès `n" -ForegroundColor "green"
 
@@ -411,7 +411,7 @@ function manageAD
                       }
 
 
-                          # 4- Supprimer une stratégie de group AD 
+                          # 4- Supprimer une stratégie de groupe AD 
                     4 {
                           Write-Host "`n"
                           $gpo = Read-Host "Saisir le nom complet de la stratégie de groupe GPO"
@@ -440,9 +440,9 @@ function manageAD
                          # 1- Exporter les utilisateurs 
                     1 {
                           Write-Host "`n"
-                          $path = Read-Host "Saisir l'emplacement (path) du fichier csv"
+                          $path = Read-Host "Saisir l'emplacement (path) du fichier CSV"
                           Get-ADUser -Filter * -Properties * | export-csv -path $path
-                          Write-Host "`n Opération réussi `n" -ForegroundColor "green"
+                          Write-Host "`n Opération réussie `n" -ForegroundColor "green"
 
                       }
 
@@ -450,9 +450,9 @@ function manageAD
                          # 2- Exporter les OU 
                     2 {
                           Write-Host "`n"
-                          $path = Read-Host "Saisir l'emplacement (path) du fichier csv"
+                          $path = Read-Host "Saisir l'emplacement (path) du fichier CSV"
                           Get-ADOrganizationalUnit -Filter * -Properties * | export-csv -path $path
-                          Write-Host "`n Opération réussi `n" -ForegroundColor "green"
+                          Write-Host "`n Opération réussie `n" -ForegroundColor "green"
 
                       }
 
@@ -460,9 +460,9 @@ function manageAD
                           # 3- Exporter les groupes AD 
                     3 {
                           Write-Host "`n"
-                          $path = Read-Host "Saisir l'emplacement (path) du fichier csv"
+                          $path = Read-Host "Saisir l'emplacement (path) du fichier CSV"
                           Get-ADGroup -Filter * -Properties * | export-csv -path $path
-                          Write-Host "`n Opération réussi `n" -ForegroundColor "green"
+                          Write-Host "`n Opération réussie `n" -ForegroundColor "green"
 
                       }
 
@@ -470,9 +470,9 @@ function manageAD
                           # 4- Exporter les stratégies de groupe AD 
                     4 {
                           Write-Host "`n"
-                          $path = Read-Host "Saisir l'emplacement (path) du fichier csv"
+                          $path = Read-Host "Saisir l'emplacement (path) du fichier CSV"
                           Get-GPO -Filter * -Properties * | export-csv -path $path
-                          Write-Host "`n Opération réussi `n" -ForegroundColor "green"
+                          Write-Host "`n Opération réussie `n" -ForegroundColor "green"
 
                       }
 
@@ -527,8 +527,8 @@ function main
 {    
    Write-Host "`n                   MENU                      `n" -BackgroundColor "black"
    Write-Host "1- Administrer l'Active Directory              "   -BackgroundColor "black"
-   Write-Host "2- Afficher la configuration du serveur         "   -BackgroundColor "black"
-   Write-Host "3- Communiquer avec un aprareil du réseau      "   -BackgroundColor "black"
+   Write-Host "2- Afficher la configuration du serveur        "   -BackgroundColor "black"
+   Write-Host "3- Communiquer avec un appareil du réseau      "   -BackgroundColor "black"
    Write-Host "4- Quitter                                     "   -BackgroundColor "black"
    Write-Host "`n"
 
