@@ -95,9 +95,10 @@ function Menu_Server_Configuration
     Write-Host "2- Afficher la configuration du Proxy"                                        
     Write-Host "3- Afficher la plage d'adresse DHCP"
     Write-Host "4- Afficher la configuration DNS"
-    Write-Host "5- Afficher les informations du controleur de domaine"
-    Write-Host "6- Afficher le niveau fonctionnel du windows Server"
-    Write-Host "7- Retour"
+    Write-Host "5- Afficher les informations du controleur de domaine" 
+    Write-Host "6- Afficher les cartes réseau"
+    Write-Host "7- Afficher le niveau fonctionnel du windows Server"
+    Write-Host "8- Retour"
     Write-Host "`n"
 }
 
@@ -430,12 +431,13 @@ function configuration_server
      3 {  Get-DhcpServerv4Scope }
      4 {  Get-DnsServerResourceRecord -ZoneName "abstergo.local" }
      5 {  Get-ADDomainController -Filter * | Format-Table }
-     6 {
+     6 {  Get-NetAdapter | fl Name, InterfaceIndex }
+     7 {
           Write-Host "`n Le niveau fonctionnel du domain est : " (Get-ADDomain).DomainMode  
           Write-Host "`n Le niveau fonctionnel de la foret est : " (Get-ADForest).ForestMode 
        }
 
-     7 {
+     8 {
            main
        }
    }
