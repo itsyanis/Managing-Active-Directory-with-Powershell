@@ -1,3 +1,7 @@
 
 # Folders
-.vs/
+*.vs/
+
+# Files
+*.sqlite
+*.log
