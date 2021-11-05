@@ -1,17 +1,17 @@
-﻿#-----------------------------------------------------------------------------#
-# Executez d'abord ces deux commandes avant de lancer le programme :
-    # Import-Module ActiveDirectory
-    # Import-Module 'Microsoft.Powershell.Security'
+﻿<#
 
-# Assurez-vous que votre serveur est un controleur de domaine. 
+ Executez d'abord ces deux commandes avant de lancer le programme :
+    Import-Module ActiveDirectory
+    Import-Module 'Microsoft.Powershell.Security'
 
-# Domain : abstergo.local => DC=abstergo,DC=local
+ Assurez-vous que votre serveur est un controleur de domaine. 
 
-#-----------------------------------------------------------------------------
+ Domain : abstergo.local => DC=abstergo,DC=local
+
+#>
 
 
-
-// Menu Administration de l'Active Directory
+# Menu Administration de l'Active Directory
 
 function Menu_Object_AD
 {
@@ -25,7 +25,7 @@ function Menu_Object_AD
 }
 
 
-// Menu ajouter un Objet Active Directory
+# Menu ajouter un Objet Active Directory
 
 function Menu_Add_Object
 {
@@ -34,12 +34,13 @@ function Menu_Add_Object
     Write-Host "2- Ajouter une nouvelle Unitée Organisationnel               " -BackgroundColor "black" 
     Write-Host "3- Ajouter un groupe                                         " -BackgroundColor "black" 
     Write-Host "4- Ajouter une stratégie de groupe GPO                       " -BackgroundColor "black" 
-    Write-Host "5- Retour                                                    " -BackgroundColor "black" 
+    Write-Host "5- Définir la politique de mot de passe                      " -BackgroundColor "black"  
+    Write-Host "6- Retour                                                    " -BackgroundColor "black" 
     Write-Host "`n"
 }
 
 
-// Menu supprimer un Objet Active Directory
+# Menu supprimer un Objet Active Directory
 
 function Menu_Delete_Object
 {
@@ -53,7 +54,7 @@ function Menu_Delete_Object
 }
 
 
-// Menu Afficher un Objet Active Directory
+# Menu Afficher un Objet Active Directory
 
 function Menu_Show_Object
 {
@@ -74,7 +75,7 @@ function Menu_Show_Object
 }
 
 
-// Menu Exporter un Objet Active Directory en CSV 
+# Menu Exporter un Objet Active Directory en CSV 
 
 function Menu_Export_Object
 {
@@ -88,7 +89,7 @@ function Menu_Export_Object
 }
 
 
-// Menu Configuration 
+# Menu Configuration 
 
 function Menu_Server_Configuration
 {
@@ -210,10 +211,40 @@ function manageAD
 
                           Get-GPO -Name $gpo_name
                       }
+                   
+                        # 5- Définir la politique de mot de passe
+                    5 { 
+                        $identity = Read-Host "Entrer le domaine AD (ex : abstergo.local)" 
+                        $c = Read-Host "Voulez-vous activer la complexité ? (ex : oui ou non)"
 
+                        $complexity = switch ($c) {
+                          'oui' { $true }
+                          'non'  { $false }
+                        }
 
-                        # 5- Retour
-                    5 {  manageAD   }
+                        $minPwdLength = Read-Host "Spécifier le nombre minimum de caractères que contient un mot de passe (ex : 8)"
+                        $minPwdAge = Read-Host "Entrer le temps (en jours) minimum avant de changer le mot de passe (ex : 5)"
+                        $maxPwdAge = Read-Host "Entrer le temps (en jours) maximum avant de changer le mot de passe (ex : 85)"
+                        $passHC = Read-Host "Spécifier le nombre de mot de passe à sauvegarder (ex : 10) - mot de passe à ne pas réutiliser"
+
+                        $PolitiqueMdp = @{
+                            Identity = $identity
+                            ComplexityEnabled = $complexity
+                            MinPasswordLength = $minPwdLength
+                            MinPasswordAge = $minPwdAge 
+                            MaxPasswordAge = $maxPwdAge
+                            PasswordHistoryCount = $passHC
+                        }
+
+                        Set-ADDefaultDomainPasswordPolicy @PolitiqueMdp
+                        Get-ADDefaultDomainPasswordPolicy
+ 
+                        Write-Host "`n La politique de mot de passe a bien été modifiée. `n" -ForegroundColor "green"
+
+                      }
+
+                        # 6- Retour
+                    6 {  manageAD   }
 
                }
 
