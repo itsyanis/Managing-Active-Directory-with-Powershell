@@ -60,7 +60,7 @@ function Menu_Show_Object
 {
     Write-Host "`n"                                                       
     Write-Host "1- Afficher un utilisateur"
-    Write-Host "2- Afficher une Unitée Organisationnel OU"
+    Write-Host "2- Afficher une Unité Organisationnelle OU"
     Write-Host "3- Afficher un groupe"
     Write-Host "4- Afficher une stratégie de groupe GPO"
     Write-Host "5- Afficher l'ensemble des utilisateurs"
@@ -69,8 +69,8 @@ function Menu_Show_Object
     Write-Host "8- Afficher toutes les stratégies de groupe GPO"
     Write-Host "9- Afficher les ordinateurs du LAN"
     Write-Host "10- Afficher la politique de mot de passe"
-
-    Write-Host "11- Retour"
+    Write-Host "11- Afficher les rôles des serveurs"
+    Write-Host "12- Retour"
     Write-Host "`n"
 }
 
@@ -322,11 +322,50 @@ function manageAD
                    
                           # 10- Afficher la politique de mot de passe
                    10 { 
-                          Get-ADDefaultDomainPasswordPolicy
+                        Get-ADDefaultDomainPasswordPolicy
                       }
-                       
-                          # 11- Retour
+
+                          # 11- Afficher les rôles des serveurs
                    11 { 
+                        $srv = (Get-ADComputer -Properties operatingsystem `
+                        -Filter 'operatingsystem -like "*server*" -and enabled -eq "true"').Name
+ 
+                        $result = @()
+ 
+                        foreach ($item in $srv) {
+ 
+                            $test = Test-Connection $item -Count 1
+ 
+                            If ($test.Status -eq 'Success' -or $test.StatusCode -eq '0')
+                            {
+                                $roles = Get-WindowsFeature -ComputerName $item | Where-Object InstallState -EQ 'Installed'
+ 
+                                $result += New-Object -TypeName PSObject -Property ([ordered]@{
+ 
+                                'Serveur' = $item
+                                'Roles' = $roles.Name -join "`r`n"
+                            }
+                        )
+ 
+                        }
+                        }
+
+                        # Affichage des serveurs et des roles
+                        Write-Output $result | Format-Table -Wrap
+ 
+                        # Creation du fichier
+                        $date = Get-Date -Format MM.dd.yyyy
+                        $result | Format-Table -Wrap |
+                        Out-File "$HOME\srv_roles_$date.txt"
+                        Write-Host "`nLe fichier srv_roles_$date.txt est dans $HOME `n" -ForegroundColor "green"
+ 
+                        # Ouverture fichier
+                        Start-Process $HOME\"srv_roles_$date.txt" 
+
+                      }
+
+                          # 12- Retour
+                   12 { 
                           manageAD
                       }
              
@@ -512,6 +551,4 @@ function main
 
    main
 }
-
-main
 
