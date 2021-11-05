@@ -3,12 +3,15 @@
     # Import-Module ActiveDirectory
     # Import-Module 'Microsoft.Powershell.Security'
 
+# Assurez-vous que votre serveur est un controleur de domaine. 
+
 # Domain : abstergo.local => DC=abstergo,DC=local
+
 #-----------------------------------------------------------------------------
 
 
 
-
+// Menu Administration de l'Active Directory
 
 function Menu_Object_AD
 {
@@ -22,6 +25,7 @@ function Menu_Object_AD
 }
 
 
+// Menu ajouter un Objet Active Directory
 
 function Menu_Add_Object
 {
@@ -34,6 +38,9 @@ function Menu_Add_Object
     Write-Host "`n"
 }
 
+
+// Menu supprimer un Objet Active Directory
+
 function Menu_Delete_Object
 {
     Write-Host "`n"                                                       
@@ -44,6 +51,9 @@ function Menu_Delete_Object
     Write-Host "5- Retour"
     Write-Host "`n"
 }
+
+
+// Menu Afficher un Objet Active Directory
 
 function Menu_Show_Object
 {
@@ -61,6 +71,9 @@ function Menu_Show_Object
     Write-Host "`n"
 }
 
+
+// Menu Exporter un Objet Active Directory en CSV 
+
 function Menu_Export_Object
 {
     Write-Host "`n"                                                       
@@ -71,6 +84,9 @@ function Menu_Export_Object
     Write-Host "5- Retour"
     Write-Host "`n"
 }
+
+
+// Menu Configuration 
 
 function Menu_Server_Configuration
 {
@@ -420,7 +436,7 @@ function configuration_server
        }
 
      7 {
-           manageAD
+           main
        }
    }
 
