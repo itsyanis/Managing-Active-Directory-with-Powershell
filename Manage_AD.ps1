@@ -67,7 +67,9 @@ function Menu_Show_Object
     Write-Host "7- Afficher tous des groupes"
     Write-Host "8- Afficher toutes les stratégies de groupe GPO"
     Write-Host "9- Afficher les ordinateurs du LAN"
-    Write-Host "10- Retour"
+    Write-Host "10- Afficher la politique de mot de passe"
+
+    Write-Host "11- Retour"
     Write-Host "`n"
 }
 
@@ -286,9 +288,14 @@ function manageAD
                     9 {
                           Get-ADComputer -Filter * | Format-Table ObjectClass,Name,OperatingSystem,IPv4Address 
                       }
-                       
-                          # 10- Retour
+                   
+                          # 10- Afficher la politique de mot de passe
                    10 { 
+                          Get-ADDefaultDomainPasswordPolicy
+                      }
+                       
+                          # 11- Retour
+                   11 { 
                           manageAD
                       }
              
