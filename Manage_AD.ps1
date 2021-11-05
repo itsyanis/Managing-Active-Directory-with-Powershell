@@ -15,13 +15,14 @@
 
 function Menu_Object_AD
 {
-    Write-Host "`n             Gérer l'Active Directory            `n"  -BackgroundColor "black"                                                      
-    Write-Host "1- Ajouter un objet AD                             "    -BackgroundColor "black"
-    Write-Host "2- Afficher un objet AD                            "    -BackgroundColor "black"
-    Write-Host "3- Supprimer un objet AD                           "    -BackgroundColor "black"
-    Write-Host "4- Exporter les objets AD en fichier CSV           "    -BackgroundColor "black"
-    Write-Host "5- Retour                                          "    -BackgroundColor "black"
-    Write-Host "`n"
+    Write-Host "`n          Gérer l'Active Directory                 "  -BackgroundColor "DarkCyan"                                                      
+    Write-Host "==================================================="    -BackgroundColor "DarkCyan"
+    Write-Host " 1- Ajouter un objet AD                            "    -BackgroundColor "black"
+    Write-Host " 2- Afficher un objet AD                           "    -BackgroundColor "black"
+    Write-Host " 3- Supprimer un objet AD                          "    -BackgroundColor "black"
+    Write-Host " 4- Exporter les objets AD en fichier CSV          "    -BackgroundColor "black"
+    Write-Host " 5- Retour                                         "    -BackgroundColor "black"
+    Write-Host "===================================================`n"  -BackgroundColor "DarkCyan" 
 }
 
 
@@ -29,14 +30,15 @@ function Menu_Object_AD
 
 function Menu_Add_Object
 {
-    Write-Host "`n              Ajouter un Objet Active Directory            " -BackgroundColor "black"           
-    Write-Host "1- Ajouter un nouvel utilisateur                             " -BackgroundColor "black" 
-    Write-Host "2- Ajouter une nouvelle Unité Organisationnelle              " -BackgroundColor "black" 
-    Write-Host "3- Ajouter un groupe                                         " -BackgroundColor "black" 
-    Write-Host "4- Ajouter une stratégie de groupe GPO                       " -BackgroundColor "black" 
-    Write-Host "5- Définir la politique de mot de passe                      " -BackgroundColor "black"  
-    Write-Host "6- Retour                                                    " -BackgroundColor "black" 
-    Write-Host "`n"
+    Write-Host "`n          Ajouter un Objet Active Directory        "  -BackgroundColor "DarkCyan"
+    Write-Host "==================================================="    -BackgroundColor "DarkCyan"
+    Write-Host " 1- Ajouter un nouvel utilisateur                  "    -BackgroundColor "black" 
+    Write-Host " 2- Ajouter une nouvelle Unité Organisationnelle   "    -BackgroundColor "black" 
+    Write-Host " 3- Ajouter un groupe                              "    -BackgroundColor "black" 
+    Write-Host " 4- Ajouter une stratégie de groupe GPO            "    -BackgroundColor "black" 
+    Write-Host " 5- Définir la politique de mot de passe           "    -BackgroundColor "black"  
+    Write-Host " 6- Retour                                         "    -BackgroundColor "black" 
+    Write-Host "===================================================`n"  -BackgroundColor "DarkCyan"
 }
 
 
@@ -45,11 +47,11 @@ function Menu_Add_Object
 function Menu_Delete_Object
 {
     Write-Host "`n"                                                       
-    Write-Host "1- Supprimer un utilisateur"
-    Write-Host "2- Supprimer une Unité Organisationnelle UO"
-    Write-Host "3- Supprimer un groupe"
-    Write-Host "4- Supprimer une stratégie de groupe GPO"
-    Write-Host "5- Retour"
+    Write-Host " 1- Supprimer un utilisateur"
+    Write-Host " 2- Supprimer une Unité Organisationnelle UO"
+    Write-Host " 3- Supprimer un groupe"
+    Write-Host " 4- Supprimer une stratégie de groupe GPO"
+    Write-Host " 5- Retour"
     Write-Host "`n"
 }
 
@@ -59,18 +61,18 @@ function Menu_Delete_Object
 function Menu_Show_Object
 {
     Write-Host "`n"                                                       
-    Write-Host "1- Afficher un utilisateur"
-    Write-Host "2- Afficher une Unité Organisationnelle UO"
-    Write-Host "3- Afficher un groupe"
-    Write-Host "4- Afficher une stratégie de groupe GPO"
-    Write-Host "5- Afficher l'ensemble des utilisateurs"
-    Write-Host "6- Afficher toutes les Unités organisationnelles UO"
-    Write-Host "7- Afficher tous des groupes"
-    Write-Host "8- Afficher toutes les stratégies de groupe GPO"
-    Write-Host "9- Afficher les ordinateurs du LAN"
-    Write-Host "10- Afficher la politique de mot de passe"
-    Write-Host "11- Afficher les rôles des serveurs"
-    Write-Host "12- Retour"
+    Write-Host " 1- Afficher un utilisateur"
+    Write-Host " 2- Afficher une Unité Organisationnelle UO"
+    Write-Host " 3- Afficher un groupe"
+    Write-Host " 4- Afficher une stratégie de groupe GPO"
+    Write-Host " 5- Afficher l'ensemble des utilisateurs"
+    Write-Host " 6- Afficher toutes les Unités organisationnelles UO"
+    Write-Host " 7- Afficher tous des groupes"
+    Write-Host " 8- Afficher toutes les stratégies de groupe GPO"
+    Write-Host " 9- Afficher les ordinateurs du LAN"
+    Write-Host " 10- Afficher la politique de mot de passe"
+    Write-Host " 11- Afficher les rôles des serveurs"
+    Write-Host " 12- Retour"
     Write-Host "`n"
 }
 
@@ -80,11 +82,11 @@ function Menu_Show_Object
 function Menu_Export_Object
 {
     Write-Host "`n"                                                       
-    Write-Host "1- Exporter les utilisateurs"
-    Write-Host "2- Exporter les Unité Organisationnelle UO"
-    Write-Host "3- Exporter les groupes"
-    Write-Host "4- Exporter les stratégies de groupe"
-    Write-Host "5- Retour"
+    Write-Host " 1- Exporter les utilisateurs"
+    Write-Host " 2- Exporter les Unité Organisationnelle UO"
+    Write-Host " 3- Exporter les groupes"
+    Write-Host " 4- Exporter les stratégies de groupe"
+    Write-Host " 5- Retour"
     Write-Host "`n"
 }
 
@@ -94,14 +96,14 @@ function Menu_Export_Object
 function Menu_Server_Configuration
 {
     Write-Host "`n"  
-    Write-Host "1- Afficher l'adresse IPv4, IPv6 et l'adresse de la passerelle du serveur"       
-    Write-Host "2- Afficher la configuration du Proxy"                                        
-    Write-Host "3- Afficher la plage d'adresses DHCP"
-    Write-Host "4- Afficher la configuration DNS"
-    Write-Host "5- Afficher les informations du controleur de domaine" 
-    Write-Host "6- Afficher les cartes réseaux"
-    Write-Host "7- Afficher le niveau fonctionnel du Windows Server"
-    Write-Host "8- Retour"
+    Write-Host " 1- Afficher l'adresse IPv4, IPv6 et l'adresse de la passerelle du serveur"       
+    Write-Host " 2- Afficher la configuration du Proxy"                                        
+    Write-Host " 3- Afficher la plage d'adresses DHCP"
+    Write-Host " 4- Afficher la configuration DNS"
+    Write-Host " 5- Afficher les informations du controleur de domaine" 
+    Write-Host " 6- Afficher les cartes réseaux"
+    Write-Host " 7- Afficher le niveau fonctionnel du Windows Server"
+    Write-Host " 8- Retour"
     Write-Host "`n"
 }
 
@@ -165,8 +167,8 @@ function manageAD
 
 
                             Write-Host "`n"
-                            Write-Host "1- Groupe de sécurité"
-                            Write-Host "2- Groupe de distribution"
+                            Write-Host " 1- Groupe de sécurité"
+                            Write-Host " 2- Groupe de distribution"
 
                             $category_choice = Read-Host "Choisissez une catégorie de groupe"
             
@@ -178,9 +180,9 @@ function manageAD
 
                             Write-Host "`n"
                             Write-Host "Choisissez l'étendu du groupe :"
-                            Write-Host "1- Groupe Universel"
-                            Write-Host "2- Groupe Global"
-                            Write-Host "3- Groupe Local"
+                            Write-Host " 1- Groupe Universel"
+                            Write-Host " 2- Groupe Global"
+                            Write-Host " 3- Groupe Local"
 
                             $scope_choice = Read-Host "Choisissez le type de groupe"
 
@@ -525,14 +527,20 @@ function configuration_server
 
 function main
 {    
-   Write-Host "`n                   MENU                      `n" -BackgroundColor "black"
-   Write-Host "1- Administrer l'Active Directory              "   -BackgroundColor "black"
-   Write-Host "2- Afficher la configuration du serveur        "   -BackgroundColor "black"
-   Write-Host "3- Communiquer avec un appareil du réseau      "   -BackgroundColor "black"
-   Write-Host "4- Quitter                                     "   -BackgroundColor "black"
-   Write-Host "`n"
+   Write-Host "`n APPLICATION POUR L'ADMINISTRATION DU RESEAU       "  -BackgroundColor "Black"
+   Write-Host "===================================================`n"    -BackgroundColor "Black"
 
-   $user_choice = Read-Host "Selectionnez une option"
+
+   Write-Host "`n          MENU                                     "  -BackgroundColor "DarkCyan"
+   Write-Host "==================================================="    -BackgroundColor "DarkCyan"
+   Write-Host " 1- Administrer l'Active Directory                 "   -BackgroundColor "black"
+   Write-Host " 2- Afficher la configuration du serveur           "   -BackgroundColor "black"
+   Write-Host " 3- Communiquer avec un appareil du réseau         "   -BackgroundColor "black"
+   Write-Host " 4- Quitter                                        "   -BackgroundColor "black"
+   Write-Host "===================================================`n"  -BackgroundColor "DarkCyan"
+
+
+   $user_choice = Read-Host "Sélectionnez une option"
 
    switch($user_choice)
    {
@@ -548,7 +556,6 @@ function main
        4 {  main }
 
    }
-
-   main
+   
 }
-
+main
