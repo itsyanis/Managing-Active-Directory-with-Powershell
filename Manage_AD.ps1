@@ -431,7 +431,7 @@ function configuration_server
      3 {  Get-DhcpServerv4Scope }
      4 {  Get-DnsServerResourceRecord -ZoneName "abstergo.local" }
      5 {  Get-ADDomainController -Filter * | Format-Table }
-     6 {  Get-NetAdapter | fl Name, InterfaceIndex }
+     6 {  Get-NetAdapter | fl Name, InterfaceIndex, MacAddress, MediaConnectionState, LinkSpeed }
      7 {
           Write-Host "`n Le niveau fonctionnel du domain est : " (Get-ADDomain).DomainMode  
           Write-Host "`n Le niveau fonctionnel de la foret est : " (Get-ADForest).ForestMode 
