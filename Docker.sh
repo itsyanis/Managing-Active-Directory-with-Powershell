@@ -6,7 +6,7 @@ function Menu_Docker {
    echo "3- Répertorier tous les conteneurs docker exécutés "
    echo "4- Executer une image docker"
    echo "5- Démarrer un conteneur docker"
-   echo "6- Redemmarer un conteneur docker"
+   echo "6- Redemarrer un conteneur docker"
    echo "7- Arreter un conteneur docker"
    echo "8- Supprimer un conteneur docker"
    echo "9- Supprimer une image docker"
@@ -35,7 +35,7 @@ function Docker {
       ;;
 
     4)
-      echo -n "Entrer l'image à exécuté : "
+      echo -n "Entrer l'image à exécuter : "
       read Image
       docker run -it -d $Image
       ;;
@@ -48,13 +48,13 @@ function Docker {
 
     6)
       echo -n "Entrer l'ID du conteneur à redemarrer : "
-      read Image
+      read ID
       docker restart $ID
       ;;
 
     7)
       echo -n "Entrer l'ID du conteneur à arreter : "
-      read Image
+      read ID
       docker stop $ID
       ;;
       
@@ -66,8 +66,8 @@ function Docker {
       
      9)
       echo -n "Entrer l'ID de l'image à supprimer : "
-      read ID
-      docker rmi $ID
+      read Image_ID
+      docker rmi $Image_ID
       ;;
 
   esac
